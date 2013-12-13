@@ -1,0 +1,47 @@
+extends template
+block info
+	p The first lesson in SQL Injection series	
+
+	p.
+		A successful injection attack can bypass the app’s access control and gain access. 
+		Here we have a simple login form to demonstrate this.
+
+	p.
+		There is a user named John Doe in the database, whose password is password.
+
+	p.
+		You can try loggin in with that to see the normal behavior. 
+
+	p.
+		Next, you should try to get an error message as a result. This will tell you that this form is vulnerable 
+		to SQL Injection.
+
+	p.
+		All you need to do next is construct a well devised password to login as root.
+
+	a(href="#", onclick="showHint()") hint  
+	div#hint(style="display:none; ") 
+		p The password should be formated as 
+		span(style="color:red")' or 1=1#
+		p
+		p Explanation:
+		img(src="/images/sql_1.png", width="500px");
+
+	script.
+		function showHint(){
+			$('#hint').show();
+		}
+	br
+	br
+
+block resultInfo
+	dir#queryFormat	
+	script.
+		$(document).ready(function(){
+			$("#submit").click(function(){
+					var user = $("#username").val();
+					var password = $("#password").val();
+					var query =	"SELECT * FROM users WHERE username='"+user+"' AND password='"+password+"'";
+					$("#queryFormat").html(query);
+				})	
+		}) 

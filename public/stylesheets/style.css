@@ -4,5 +4,31 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: pink;
+}
+
+.lessonPanel{
+	width: 500px;
+	border: solid;
+	border-color: red;
+}
+.lessonPanel h2 a{
+	color: red;
+
+}
+
+#sql .resultSection{
+	padding: 0px;
+	border: solid;
+	border-color: grey;
+}  
+#sql #output{
+	border: solid;
+	border-color: lightblue;
+	margin: 20px;
+}
+#sql #queryFormat{
+	border: solid;
+	border-color: black;
+	margin: 20px;
 }

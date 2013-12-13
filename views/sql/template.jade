@@ -1,0 +1,31 @@
+extends ../layout
+block content
+	dir#sql
+		h1= title	
+
+		block info
+
+		form(action= "#{destination}", method="post")
+			label(for="username") Username:&nbsp
+			input(id="username", type="text", value='', placeholder="John Doe", name="username");
+			br
+			label(for="password") Password:&nbsp  
+			input(id="password", type="password", value='', placeholder="password", name="password");
+			br
+			input(id="submit", type="submit", value="Login");
+
+		dir.resultSection
+			h4 The format of the query as it is executed
+			block resultInfo
+		dir.resultSection
+			h4 Result:
+			dir#output
+
+		script(src="http://malsup.github.com/jquery.form.js")
+		script.
+			$(document).ready(function() { 
+			// bind 'myForm' and provide a simple callback function 
+			$('form').ajaxForm(function(responseText) { 
+				$('#output').html(responseText);
+			}); 
+			}); 	

@@ -8,7 +8,7 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
-
+var mysql = require('./models/mysqlCon');
 var app = express();
 
 // all environments
@@ -28,7 +28,15 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+mysql.startConnection({
+		host     : 'localhost',
+        user     : 'root',
+        password : ''	
+});
+
 app.get('/', routes.index);
+app.get('/lessons/:type/:lessonNum', routes.showLesson);
+app.post('/lessons/getResults/:type/:lessonNum', routes.getResults);
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){

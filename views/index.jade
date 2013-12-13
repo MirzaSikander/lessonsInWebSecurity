@@ -1,5 +1,17 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	h1= title
+	p Welcome to #{title}
+	br
+	p Here you can learn about 4 different web vulnerabilities
+
+	dir.lessonPanel
+		h2
+			a(href="lessons/sql/1") SQL injections
+		a(href="lessons/sql/1")
+			p.
+				SQL injection is a code injection technique, 
+				used to attack data driven applications, 
+				in which malicious SQL statements are inserted into an 
+				entry field for execution (e.g. to dump the database contents to the attacker)
