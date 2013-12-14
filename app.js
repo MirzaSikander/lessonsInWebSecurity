@@ -18,6 +18,7 @@ app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
+app.use(express.cookieParser());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
@@ -31,7 +32,8 @@ if ('development' == app.get('env')) {
 mysql.startConnection({
 		host     : 'localhost',
         user     : 'root',
-        password : ''	
+        password : '',	
+        multipleStatements: true
 });
 
 app.get('/', routes.index);

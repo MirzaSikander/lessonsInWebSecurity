@@ -10,7 +10,19 @@ exports.index = function(req, res){
 exports.showLesson = function(req, res){
 	var type = req.params['type'];
 	var lessonNum = req.params['lessonNum'];
-	res.render(type+'/lesson'+lessonNum, { title: 'A lesson', destination: '/lessons/getResults/'+type+'/'+lessonNum});
+	if(type == 'xss')
+		mysql.getComments(function(err, result){
+			if(err){
+				res.send("Something went wrong");
+			}
+			else{
+				res.cookie('user_data','valuable',{httpOnly:false});
+				res.render(type+'/lesson'+lessonNum, { title: 'A lesson', 
+					destination: '/lessons/getResults/'+type+'/'+lessonNum, comments: result.reverse()});
+			}
+		})
+	else
+		res.render(type+'/lesson'+lessonNum, { title: 'A lesson', destination: '/lessons/getResults/'+type+'/'+lessonNum});
 }
 
 exports.getResults = function(req, res){
@@ -35,6 +47,14 @@ exports.getResults = function(req, res){
 	}
 	else if(type == 'directObj' && lessonNum == '1'){
 		login(req, res);
+	}
+	else if(type == 'xss' && lessonNum == '1'){
+		mysql.createComment(req.body.username, req.body.content, function(err,result){
+			if(err)
+				res.send(err.message);
+			else
+				res.send("Submitted");
+		});
 	}
 }
 

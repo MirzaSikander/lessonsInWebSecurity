@@ -1,0 +1,73 @@
+extends ../layout
+block content
+	div#xss
+		h1 Cross-site scripting 
+		p.
+			This vulnerability is caused when the application fails
+			to check user input and sanitize it. If the application lacks the defences, a clever hacker, like you, can 
+			embed code into the website using one of the input fields
+		p.
+			To showcase this vulnerability, we will use the following web app. Try to get the page to show the cookies.
+		a(href="#", onclick="showHint()") hint  
+		div#hint(style="display:none; ") 
+			p.
+				The first hint, which indicates that this page is vulnerable to xss, is that it has a comment with bold text.
+				This means that it is allowing html to be entered in the page, and it is displaying it as it is.
+
+			p.
+				In order to exploit the vulnerability, you need to input javascript in the comment or name section.
+				Just input the following code into the comments section:
+			- var code = "<script> (function(){alert(document.cookie)})() </script>"
+			p(style="color:red")= code 
+			p(style="font-weight:bold") Explanation:
+			p.
+				This simple script executes a function, which pops up the alert box and displays the cookies. 
+				This might not seem a very serious problem, but this vulnerability can be exploited to send "valuable data"
+				to a remote server.
+			p.
+				Also note that since this script is embedded in the comments section, it will be executed everytime the page
+				is rendered. Try refreshing the page!
+
+		script.
+			function showHint(){
+				$('#hint').show();
+			}
+		br
+		br	
+
+
+		div(style="text-align:center")
+			p ------------------------
+
+		h2(style="text-align:center") CHITUBE	
+		div(style="text-align:center")
+			iframe(width="560",height="315", style="margin-left:auto; margin-right:auto" src="//www.youtube.com/embed/1Y2zo0JN2HE", frameborder="0", allowfullscreen);
+		form(action= "#{destination}", method="post")
+			div(style="margin-right:auto; margin-left:auto; width:500px; margin-top: 100px")
+				h3 Enter your comments here:
+				div
+					span.label Name:
+					input(type="text", class="nameTxt", name="username", style="margin-left: 40px;")
+				br
+				div(style="")
+					span.label(style="") Comment:
+					textarea(name="content", style="width:80%; margin-left: 10px")
+				div#addCommentSubmit(style="text-align:center; margin-top: 10px")
+					input(type="submit", value="Save", style="width: 50px; font-size: 20px;")
+
+		script(src="http://malsup.github.com/jquery.form.js")
+		script.
+			$(document).ready(function() { 
+				$('form').ajaxForm().submit(function(){
+					var username = $(this).find('input[name="username"]').val();
+					var content = $(this).find('textarea[name="content"]').val();
+					$('#commentsBlock').prepend('<div class="name">'+username+'</div><div class="content">'+content+'</div>');
+				});
+			});
+
+		h3 COMMENTS:
+		div#commentsBlock
+			- each comment in comments
+				div.comment
+					div.name!= comment.username
+					div.content!= comment.content 

@@ -1,6 +1,9 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  max-width: 800px;
+  margin-left:auto;
+  margin-right: auto;
 }
 
 a {
@@ -44,4 +47,18 @@ a {
 #messageBoard #actualMessage .message{
 	font-style: italic;
 	color: lightblue;
+}
+
+#xss .name{
+	border-top:solid;
+	border-color:orange;
+	color:brown;
+}
+#xss .content{
+	padding: 20px;
+	font-style: italic;
+}
+#xss #commentsBlock{
+	border-bottom: solid;
+	border-color:orange;
 }
