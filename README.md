@@ -1,7 +1,7 @@
 lessonsInWebSecurity
 ====================
 
-A project developed on nodejs to demonstrate some of the top vulnerabilities when it comes to web development
+A project developed on nodejs to demonstrate some of the top vulnerabilities when it comes to web development<br>
 
 
 Instructions for setuping the environment.
