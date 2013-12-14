@@ -1,6 +1,6 @@
 extends ../layout
 block content
-	dir
+	div
 		h1 Insecure Direct Object Access	
 
 		p.
@@ -13,7 +13,7 @@ block content
 			First you need to login to the message board application. 
 			The username is John Doe and password is password.
 			The Message board application shows the message stored by each user that they want to review later
-
+		hr
 		h2 Welcome to Message Board.
 		h4 Please login
 		form(action= "#{destination}", method="post")

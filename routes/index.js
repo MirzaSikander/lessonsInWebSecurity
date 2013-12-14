@@ -90,3 +90,17 @@ exports.showPageDirectObj = function(req, res){
 			res.render('directObj/messageBoard', {message: result[0].message, username: result[0].username, additionalInfo: additionalInfo });
 	})
 }
+
+exports.unsafeRedirect = function(req, res){
+	var link = req.query.content;
+	
+	if(link == 'hijackWebsite'){
+		res.redirect('/lessons/UnValRedirect/3');
+	}
+	else if(link != 'undefined'){
+		res.redirect('http://www.'+link+'.com');	
+	}
+	else{
+		res.send("Please provide a URL");
+	}
+}

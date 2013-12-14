@@ -1,10 +1,10 @@
 extends ../layout
 block content
-	dir#sql
+	div#sql
 		h1 SQL Injection	
 
 		block info
-
+		hr
 		form(action= "#{destination}", method="post")
 			label(for="username") Username:&nbsp
 			input(id="username", type="text", value='', placeholder="John Doe", name="username");
@@ -13,7 +13,7 @@ block content
 			input(id="password", type="password", value='', placeholder="password", name="password");
 			br
 			input(id="submit", type="submit", value="Login");
-
+			
 		dir.resultSection
 			h4 The format of the query as it is executed
 			block resultInfo

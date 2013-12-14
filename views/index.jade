@@ -3,10 +3,9 @@ extends layout
 block content
 	h1= title
 	p Welcome to #{title}
-	br
-	p Here you can learn about 4 different web vulnerabilities
+	p Here you can learn about 4 different web vulnerabilities:
 
-	dir.lessonPanel
+	div.lessonPanel
 		h2
 			a(href="lessons/sql/1") SQL injections
 		a(href="lessons/sql/1")
@@ -15,7 +14,7 @@ block content
 				used to attack data driven applications, 
 				in which malicious SQL statements are inserted into an 
 				entry field for execution (e.g. to dump the database contents to the attacker)
-	dir.lessonPanel
+	div.lessonPanel
 		h2
 			a(href="lessons/directObj/1") Insecure Direct Object References 
 		a(href="lessons/directObj/1")
@@ -25,10 +24,19 @@ block content
 				control check or other protection, attackers can manipulate these references 
 				to access unauthorized data
 
-	dir.lessonPanel
+	div.lessonPanel
 		h2
 			a(href="lessons/xss/1") Cross-site Scripting (XSS) 
 		a(href="lessons/xss/1")
 			p.
 				XSS enables attackers to inject client-side script into Web pages viewed by other users. 
 				A cross-site scripting vulnerability may be used by attackers to bypass access controls such as the same origin policy.
+	div.lessonPanel
+		h2
+			a(href="lessons/UnValRedirect/1") Unvalidated Redirects and Forwards
+		a(href="lessons/UnValRedirect/1")
+			p.
+				Web applications frequently redirect and forward users to other pages and websites, 
+				and use untrusted data to determine the destination pages. Without proper validation, 
+				attackers can redirect victims to phishing or malware sites, or use forwards to access 
+				unauthorized pages.

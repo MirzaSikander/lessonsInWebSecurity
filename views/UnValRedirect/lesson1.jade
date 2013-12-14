@@ -1,0 +1,47 @@
+extends ../layout
+block content
+	div#UnValRedirect
+		h1 Unvalidated Redirects and Forwards
+
+		p.
+			An open redirect vulnerability is an application that takes a parameter and redirects 
+			a user to the parameter value, such a Web site, without validation. 
+			Attackers exploit this vulnerability with phishing e-mails that cause users to 
+			visit malicious sites inadvertently.
+
+		p.
+			To demonstrate this vulnerability, we will use the following Iframe.
+			Inorder to compromise the system, you would have to inspect the elements.
+		a(href="#", onclick="showHint()") hint  
+		div#hint(style="display:none; ") 
+			p.
+				If you inspect the javascript you will find that once a button is clicked, the iframe is asked to load up
+				<span style='color:red'>/redir</span> page with the query variable <span style='color:red'>content</span>. 
+				If you manipulate that variable before it is sent you can get different results.
+			br
+			a(href="/redir?content=hijackWebsite") DO YOU WANT TO IMPRESS THE LADIES
+			p.
+				DONT CLICK THE LINK ABOVE. You were probably tempted to, though. Phishing e-mails work similarly. They can
+				construct a link like following:
+			p(style="color:red; text-align:center") http://goodsite.com/redir?content=hijackWebsite
+			p 	which can fool users.
+
+
+		script.
+			function showHint(){
+				$('#hint').show();
+			}
+		br
+		hr
+		p.
+			Please choose from the following to display the associated content.
+		div(style="width:100%; text-align:center; margin-bottom:30px")
+			input(type="Button", onclick="changeIframeLoc(this)", value="Engadget")
+			br 
+			input(type="Button", onclick="changeIframeLoc(this)", value="Walmart") 
+		iframe#showFrame(src="/lessons/UnValRedirect/2")
+		script.
+			function changeIframeLoc(obj){
+				var link = obj.value;
+				document.getElementById("showFrame").src = "/redir?content="+link.toLowerCase();
+			}
