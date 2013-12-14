@@ -1,0 +1,27 @@
+extends ../layout
+block content
+	dir
+		h1 Insecure Direct Object Access	
+
+		p.
+			This vulnerability is caused by failure on the application's part of 
+			not verifying whether the current user is authorized to access the requested resource 
+		p.
+			In this example, we will see how certain parameters can be changed to access unauthorized resources.
+
+		p.
+			First you need to login to the message board application. 
+			The username is John Doe and password is password.
+			The Message board application shows the message stored by each user that they want to review later
+
+		h2 Welcome to Message Board.
+		h4 Please login
+		form(action= "#{destination}", method="post")
+			label(for="username") Username:&nbsp
+			input(id="username", type="text", value='', placeholder="John Doe", name="username");
+			br
+			label(for="password") Password:&nbsp  
+			input(id="password", type="password", value='', placeholder="password", name="password");
+			br
+			input(id="submit", type="submit", value="Login");
+

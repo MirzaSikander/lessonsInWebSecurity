@@ -32,3 +32,16 @@ a {
 	border-color: black;
 	margin: 20px;
 }
+
+#messageBoard #actualMessage{
+	border: solid;
+	border-color: black;
+	margin-left:auto;
+	margin-right:auto;
+	padding: 30px;
+	width:500px;
+}
+#messageBoard #actualMessage .message{
+	font-style: italic;
+	color: lightblue;
+}

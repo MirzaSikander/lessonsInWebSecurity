@@ -37,6 +37,7 @@ mysql.startConnection({
 app.get('/', routes.index);
 app.get('/lessons/:type/:lessonNum', routes.showLesson);
 app.post('/lessons/getResults/:type/:lessonNum', routes.getResults);
+app.get('/directObj/messageboard/:id', routes.showPageDirectObj)
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){

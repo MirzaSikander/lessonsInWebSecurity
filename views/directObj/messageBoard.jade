@@ -1,0 +1,26 @@
+extends ../layout
+block content
+	dir#messageBoard
+		div#actualMessage
+			h1 Welcome #{username}
+
+			p.
+				Here is the message you stored for reading later:
+			p.message= message
+
+		h2 Additional info
+		p!= additionalInfo
+		
+		a(href="#", onclick="showHint()") hint 
+		div#hint(style="display:none;") 
+			p Look at the url. It contains a number at the end. That number is a parameter to the messageboard function.
+			p If you play around it with it, you will see that it is actual the id of the user as represented in the database.
+	
+
+	script.
+		function showHint(){
+			$('#hint').show();
+		}
+	br
+	br
+
